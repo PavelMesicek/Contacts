@@ -7,8 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contacts.R
 import com.example.contacts.db.Contact
-import com.example.contacts.ui.contactList.ContactViewModel
-import org.w3c.dom.Text
 
 class ContactAdapter(
     var items: List<Contact>

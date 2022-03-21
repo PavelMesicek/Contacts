@@ -3,11 +3,11 @@ package com.example.contacts.ui.fragments.add
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.contacts.databinding.FragmentNewContactBinding
@@ -16,7 +16,6 @@ import com.example.contacts.db.ContactDatabase
 import com.example.contacts.repository.ContactRepository
 import com.example.contacts.ui.contactList.ContactViewModel
 import com.example.contacts.ui.contactList.ContactViewModelProviderFactory
-import com.example.contacts.ui.contactList.MainActivity
 
 class NewContactFragment : Fragment() {
 
@@ -27,7 +26,7 @@ class NewContactFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentNewContactBinding.inflate(inflater, container, false)
 
         val contactRepository = ContactRepository(ContactDatabase(requireContext()))

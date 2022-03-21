@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.contacts.repository.ContactRepository
 
+@Suppress("UNCHECKED_CAST")
 class ContactViewModelProviderFactory(private val contactRepository: ContactRepository) :
     ViewModelProvider.Factory {
 

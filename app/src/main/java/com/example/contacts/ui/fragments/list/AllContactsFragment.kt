@@ -26,7 +26,7 @@ class AllContactsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAllContactsBinding.inflate(inflater, container, false)
         val contactRepository = ContactRepository(ContactDatabase(requireContext()))
         val viewModelProviderFactory = ContactViewModelProviderFactory(contactRepository)

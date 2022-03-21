@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.contacts.R
 import com.example.contacts.databinding.FragmentFavoritesContactsBinding
 
 class FavoritesContactsFragment : Fragment() {
@@ -17,7 +16,7 @@ class FavoritesContactsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentFavoritesContactsBinding.inflate(inflater, container, false)
         return binding.root
     }
