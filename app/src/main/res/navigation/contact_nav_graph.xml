@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contact_nav_graph"
+    app:startDestination="@id/allContactsFragment">
+
+    <fragment
+        android:id="@+id/allContactsFragment"
+        android:name="com.example.contacts.ui.fragments.list.AllContactsFragment"
+        android:label="Contacts"
+        tools:layout="@layout/fragment_all_contacts" >
+        <action
+            android:id="@+id/action_allContactsFragment_to_contactFragment"
+            app:destination="@id/contactFragment" />
+        <action
+            android:id="@+id/action_allContactsFragment_to_newContactFragment"
+            app:destination="@id/newContactFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritesContactsFragment"
+        android:name="com.example.contacts.ui.fragments.list.FavoritesContactsFragment"
+        android:label="Favorit Contacts"
+        tools:layout="@layout/fragment_favorites_contacts" >
+        <action
+            android:id="@+id/action_favoritesContactsFragment_to_contactFragment"
+            app:destination="@id/contactFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.example.contacts.ui.fragments.detail.ContactFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_contact" />
+    <fragment
+        android:id="@+id/newContactFragment"
+        android:name="com.example.contacts.ui.fragments.add.NewContactFragment"
+        android:label="Add New Contact"
+        tools:layout="@layout/fragment_new_contact" >
+        <action
+            android:id="@+id/action_newContactFragment_to_allContactsFragment"
+            app:destination="@id/allContactsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.contacts.ui.fragments.detail.SettingsFragment"
+        android:label="Setting"
+        tools:layout="@layout/fragment_settings" />
+</navigation>

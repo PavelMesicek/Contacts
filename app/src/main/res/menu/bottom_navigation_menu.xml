@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/allContactsFragment"
+        android:title="All Contacts"
+        android:icon="@drawable/ic_all_contacts" />
+
+    <item android:id="@+id/favoritesContactsFragment"
+        android:title="Favorit Contacts"
+        android:icon="@drawable/ic_favorit" />
+
+    <item android:id="@+id/settingsFragment"
+        android:title="Settings"
+        android:icon="@drawable/ic_favorit_contacts" />
+
+</menu>
