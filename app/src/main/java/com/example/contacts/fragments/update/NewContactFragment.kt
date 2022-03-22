@@ -1,4 +1,4 @@
-package com.example.contacts.ui.fragments.add
+package com.example.contacts.fragments.update
 
 import android.os.Bundle
 import android.text.Editable
@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.contacts.databinding.FragmentNewContactBinding
-import com.example.contacts.db.Contact
-import com.example.contacts.db.ContactDatabase
+import com.example.contacts.model.Contact
+import com.example.contacts.data.ContactDatabase
 import com.example.contacts.repository.ContactRepository
-import com.example.contacts.ui.contactList.ContactViewModel
-import com.example.contacts.ui.contactList.ContactViewModelProviderFactory
+import com.example.contacts.viewmodel.ContactViewModel
+import com.example.contacts.viewmodel.ContactViewModelProviderFactory
 
 class NewContactFragment : Fragment() {
 
@@ -50,7 +50,6 @@ class NewContactFragment : Fragment() {
             val contact = Contact(0, firstName, lastName, Integer.parseInt(phone.toString()))
             contactViewModel.insertContacts(contact)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
-//            findNavController().navigate(R.id.action_newContactFragment_to_allContactsFragment)
             val action = NewContactFragmentDirections.actionNewContactFragmentToAllContactsFragment()
             findNavController().navigate(action)
         } else {
@@ -58,8 +57,8 @@ class NewContactFragment : Fragment() {
         }
     }
 
-    private fun inputCheck(firstName: String, lastName:String, age: Editable): Boolean {
-        return !(TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && age.isEmpty())
+    private fun inputCheck(firstName: String, lastName:String, phone: Editable): Boolean {
+        return !(TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && phone.isEmpty())
     }
 
     override fun onDestroyView() {

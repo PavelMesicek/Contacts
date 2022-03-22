@@ -1,4 +1,4 @@
-package com.example.contacts.ui.contactList
+package com.example.contacts.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

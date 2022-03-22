@@ -1,7 +1,8 @@
-package com.example.contacts.db
+package com.example.contacts.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.contacts.model.Contact
 
 @Dao
 interface ContactDao {

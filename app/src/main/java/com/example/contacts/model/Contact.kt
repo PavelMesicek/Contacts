@@ -1,8 +1,10 @@
-package com.example.contacts.db
+package com.example.contacts.model
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 //data class Address(
 //    val street: String?,
@@ -12,6 +14,7 @@ import androidx.room.PrimaryKey
 //    val postCode: Int
 //)
 
+@Parcelize
 @Entity(tableName = "contact_table")
 data class Contact(
     @PrimaryKey(autoGenerate = true)
@@ -23,4 +26,4 @@ data class Contact(
 //    @Embedded
 //    val address: Address?,
     val phone: Int,
-)
+) : Parcelable

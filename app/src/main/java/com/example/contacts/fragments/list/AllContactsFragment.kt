@@ -1,4 +1,4 @@
-package com.example.contacts.ui.fragments.list
+package com.example.contacts.fragments.list
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,10 +11,10 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.contacts.R
 import com.example.contacts.databinding.FragmentAllContactsBinding
-import com.example.contacts.db.ContactDatabase
+import com.example.contacts.data.ContactDatabase
 import com.example.contacts.repository.ContactRepository
-import com.example.contacts.ui.contactList.ContactViewModel
-import com.example.contacts.ui.contactList.ContactViewModelProviderFactory
+import com.example.contacts.viewmodel.ContactViewModel
+import com.example.contacts.viewmodel.ContactViewModelProviderFactory
 
 class AllContactsFragment : Fragment() {
     private var _binding: FragmentAllContactsBinding? = null
@@ -33,7 +33,7 @@ class AllContactsFragment : Fragment() {
         contactViewModel =
             ViewModelProvider(this, viewModelProviderFactory)[ContactViewModel::class.java]
 
-        val adapter = ContactAdapter(listOf())
+        val adapter = ContactAdapter(listOf(), contactViewModel)
         binding.rvContact.layoutManager = LinearLayoutManager(requireContext())
         binding.rvContact.adapter = adapter
 

@@ -1,8 +1,8 @@
 package com.example.contacts.repository
 
 import androidx.lifecycle.LiveData
-import com.example.contacts.db.Contact
-import com.example.contacts.db.ContactDatabase
+import com.example.contacts.model.Contact
+import com.example.contacts.data.ContactDatabase
 
 class ContactRepository(private val db: ContactDatabase) {
 

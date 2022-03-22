@@ -1,8 +1,8 @@
-package com.example.contacts.ui.contactList
+package com.example.contacts.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.contacts.db.Contact
+import com.example.contacts.model.Contact
 import com.example.contacts.repository.ContactRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

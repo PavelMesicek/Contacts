@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    tools:context=".fragments.update.NewContactFragment">
+    android:padding="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.update.UpdateContactFragment">
 
     <EditText
         android:id="@+id/etFirstName"
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="30dp"
-        android:ems="10"
+        android:ems="15"
         android:hint="Last Name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,17 +42,19 @@
         android:hint="Phone"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etLastName" />
 
     <Button
-        android:id="@+id/btnAddContact"
+        android:id="@+id/btnUpdateContact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Add Contact"
+        android:text="Update Contact"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPhone" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

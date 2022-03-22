@@ -1,4 +1,4 @@
-package com.example.contacts.ui.fragments.list
+package com.example.contacts.fragments.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
