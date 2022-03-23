@@ -46,18 +46,20 @@ class NewContactFragment : Fragment() {
         val lastName = binding.etLastName.text.toString()
         val phone = binding.etPhone.text
 
-        if(inputCheck(firstName, lastName, phone)){
+        if (inputCheck(firstName, lastName, phone)) {
             val contact = Contact(0, firstName, lastName, Integer.parseInt(phone.toString()))
             contactViewModel.insertContacts(contact)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
-            val action = NewContactFragmentDirections.actionNewContactFragmentToAllContactsFragment()
+            val action =
+                NewContactFragmentDirections.actionNewContactFragmentToAllContactsFragment()
             findNavController().navigate(action)
         } else {
-            Toast.makeText(requireContext(), "Please fill out all fields!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Please fill out all fields!", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
-    private fun inputCheck(firstName: String, lastName:String, phone: Editable): Boolean {
+    private fun inputCheck(firstName: String, lastName: String, phone: Editable): Boolean {
         return !(TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && phone.isEmpty())
     }
 

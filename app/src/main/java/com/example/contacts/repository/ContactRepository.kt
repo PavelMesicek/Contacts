@@ -12,7 +12,7 @@ class ContactRepository(private val db: ContactDatabase) {
 
     suspend fun deleteContacts(contact: Contact) = db.contactDao().deleteContacts(contact)
 
-    fun getAllContacts() : LiveData<List<Contact>> = db.contactDao().getAllContacts()
+    fun getAllContacts(): LiveData<List<Contact>> = db.contactDao().getAllContacts()
 
     fun getContactById(id: Int): Contact? = db.contactDao().getContactById(id)
 

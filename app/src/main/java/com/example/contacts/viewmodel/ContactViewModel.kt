@@ -8,7 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ContactViewModel(private val contactRepository: ContactRepository): ViewModel() {
+class ContactViewModel(private val contactRepository: ContactRepository) : ViewModel() {
 
     fun insertContacts(contact: Contact) = CoroutineScope(Dispatchers.IO).launch {
         contactRepository.insertContacts(contact)
@@ -22,7 +22,7 @@ class ContactViewModel(private val contactRepository: ContactRepository): ViewMo
         contactRepository.deleteContacts(contact)
     }
 
-    fun getAllContacts() : LiveData<List<Contact>> = contactRepository.getAllContacts()
+    fun getAllContacts(): LiveData<List<Contact>> = contactRepository.getAllContacts()
 
     fun getContactById(id: Int): Contact? = contactRepository.getContactById(id)
 
