@@ -1,17 +1,20 @@
 package com.example.contacts.fragments.list
 
 import android.app.AlertDialog
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contacts.R
 import com.example.contacts.model.Contact
 import com.example.contacts.viewmodel.ContactViewModel
+import org.w3c.dom.Text
 
 class ContactAdapter(
     var items: List<Contact>,
@@ -21,8 +24,13 @@ class ContactAdapter(
         val firstName: TextView = itemView.findViewById(R.id.tvFistName)
         val lastName: TextView = itemView.findViewById(R.id.tvLastName)
         val phone: TextView = itemView.findViewById(R.id.tvPhone)
+        val street: TextView = itemView.findViewById(R.id.tvStreet)
+        val city: TextView = itemView.findViewById(R.id.tvCity)
+        val postCode: TextView = itemView.findViewById(R.id.tvPostCode)
         val editContact: ImageButton = itemView.findViewById(R.id.ibEdit)
         val deleteContact: ImageButton = itemView.findViewById(R.id.ibDelete)
+        val favoriteContact: ImageButton = itemView.findViewById(R.id.ibFavorit)
+        val contactPreview: ConstraintLayout = itemView.findViewById(R.id.contactPreview)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
@@ -40,6 +48,15 @@ class ContactAdapter(
         holder.firstName.text = currentItem.firstName
         holder.lastName.text = currentItem.lastName
         holder.phone.text = currentItem.phone.toString()
+
+        if(currentItem.lastName.endsWith("ova")){
+            holder.contactPreview.setBackgroundColor(Color.parseColor("#E49B83"))
+        } else{
+            holder.contactPreview.setBackgroundColor(Color.parseColor("#8DBC57"))
+            holder.editContact.setBackgroundColor(Color.parseColor("#8DBC57"))
+            holder.favoriteContact.setBackgroundColor(Color.parseColor("#8DBC57"))
+            holder.deleteContact.setBackgroundColor(Color.parseColor("#8DBC57"))
+        }
 
         holder.editContact.setOnClickListener {
             val action =

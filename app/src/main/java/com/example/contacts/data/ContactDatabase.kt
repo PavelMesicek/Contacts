@@ -1,15 +1,15 @@
 package com.example.contacts.data
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 import com.example.contacts.model.Contact
+import com.example.contacts.model.Converters
 
 @Database(
     entities = [Contact::class],
-    version = 1
+    version = 2
 )
+@TypeConverters(Converters::class)
 abstract class ContactDatabase : RoomDatabase() {
     abstract fun contactDao(): ContactDao
 
@@ -31,6 +31,6 @@ abstract class ContactDatabase : RoomDatabase() {
                 context.applicationContext,
                 ContactDatabase::class.java,
                 "contacts_db"
-            ).createFromAsset("database/contact.db").build()
+            ).fallbackToDestructiveMigration().build()
     }
 }

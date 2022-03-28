@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.contacts.data.ContactDatabase
 import com.example.contacts.databinding.FragmentUpdateContactBinding
+import com.example.contacts.model.Address
 import com.example.contacts.model.Contact
 import com.example.contacts.repository.ContactRepository
 import com.example.contacts.viewmodel.ContactViewModel
@@ -51,12 +52,17 @@ class UpdateContactFragment : Fragment() {
         val firstName = binding.etFirstName.text.toString()
         val lastName = binding.etLastName.text.toString()
         val phone = binding.etPhone.text
+        val street = binding.etStreet.text.toString()
+        val city = binding.etCity.text.toString()
+        val postCode = binding.etPostCode.text
 
         if (inputCheck(firstName, lastName, phone)) {
+            val address = Address(street, city, Integer.parseInt(postCode.toString()))
             val contact = Contact(
                 args.currentContact.id,
                 firstName,
                 lastName,
+                address,
                 Integer.parseInt(phone.toString())
             )
             contactViewModel.updateContacts(contact)
