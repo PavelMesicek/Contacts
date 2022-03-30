@@ -8,16 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.contacts.databinding.FragmentNewContactBinding
-import com.example.contacts.model.Contact
+import com.example.contacts.R
 import com.example.contacts.data.ContactDatabase
+import com.example.contacts.databinding.FragmentNewContactBinding
 import com.example.contacts.model.Address
+import com.example.contacts.model.Contact
 import com.example.contacts.repository.ContactRepository
 import com.example.contacts.viewmodel.ContactViewModel
 import com.example.contacts.viewmodel.ContactViewModelProviderFactory
+
 
 class NewContactFragment : Fragment() {
 
@@ -42,8 +45,10 @@ class NewContactFragment : Fragment() {
             binding.ivContactPicture.setImageURI(it)
         }
 
+        binding.ivContactPicture.setImageResource(R.drawable.contact_default_image)
+
         binding.ivContactPicture.setOnClickListener {
-           getImage.launch("image/*")
+            getImage.launch("image/*")
         }
 
         binding.btnAddContact.setOnClickListener {
@@ -60,10 +65,12 @@ class NewContactFragment : Fragment() {
         val street = binding.etStreet.text.toString()
         val city = binding.etCity.text.toString()
         val postCode = binding.etPostCode.text
+        val contactPhoto = binding.ivContactPicture.drawable.toBitmap()
 
         if (inputCheck(firstName, lastName, phone)) {
             val address = Address(street, city, Integer.parseInt(postCode.toString()))
-            val contact = Contact(0, firstName, lastName, address, Integer.parseInt(phone.toString()))
+            val contact =
+                Contact(0, firstName, lastName, address, Integer.parseInt(phone.toString()), false, contactPhoto)
             contactViewModel.insertContacts(contact)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
             val action =

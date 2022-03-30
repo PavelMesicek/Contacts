@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -40,9 +42,23 @@ class UpdateContactFragment : Fragment() {
         binding.etFirstName.setText(args.currentContact.firstName)
         binding.etLastName.setText(args.currentContact.lastName)
         binding.etPhone.setText(args.currentContact.phone.toString())
+        binding.etStreet.setText(args.currentContact.address?.street)
+        binding.etCity.setText(args.currentContact.address?.street)
+        binding.etPostCode.setText(args.currentContact.address?.postCode.toString())
+        binding.ivContactPicture.setImageBitmap(args.currentContact.contactPhoto)
 
         binding.btnUpdateContact.setOnClickListener {
             updateContactToDatabase()
+        }
+
+        val getImage = registerForActivityResult(
+            ActivityResultContracts.GetContent()
+        ) {
+            binding.ivContactPicture.setImageURI(it)
+        }
+
+        binding.ivContactPicture.setOnClickListener {
+            getImage.launch("image/*")
         }
 
         return binding.root
@@ -55,6 +71,7 @@ class UpdateContactFragment : Fragment() {
         val street = binding.etStreet.text.toString()
         val city = binding.etCity.text.toString()
         val postCode = binding.etPostCode.text
+        val contactPhoto = binding.ivContactPicture.drawable.toBitmap()
 
         if (inputCheck(firstName, lastName, phone)) {
             val address = Address(street, city, Integer.parseInt(postCode.toString()))
@@ -63,7 +80,9 @@ class UpdateContactFragment : Fragment() {
                 firstName,
                 lastName,
                 address,
-                Integer.parseInt(phone.toString())
+                Integer.parseInt(phone.toString()),
+                false,
+                contactPhoto
             )
             contactViewModel.updateContacts(contact)
             Toast.makeText(requireContext(), "Successfully updated!", Toast.LENGTH_LONG).show()

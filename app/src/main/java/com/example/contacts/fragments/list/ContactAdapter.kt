@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.contacts.R
 import com.example.contacts.model.Contact
 import com.example.contacts.viewmodel.ContactViewModel
-import org.w3c.dom.Text
 
 class ContactAdapter(
     var items: List<Contact>,
@@ -31,6 +31,8 @@ class ContactAdapter(
         val deleteContact: ImageButton = itemView.findViewById(R.id.ibDelete)
         val favoriteContact: ImageButton = itemView.findViewById(R.id.ibFavorit)
         val contactPreview: ConstraintLayout = itemView.findViewById(R.id.contactPreview)
+        val contactPhoto: ImageView = itemView.findViewById(R.id.ivContactPicture)
+        val expandableLayout: ConstraintLayout = itemView.findViewById(R.id.expandableLayout)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
@@ -48,10 +50,22 @@ class ContactAdapter(
         holder.firstName.text = currentItem.firstName
         holder.lastName.text = currentItem.lastName
         holder.phone.text = currentItem.phone.toString()
+        holder.street.text = currentItem.address?.street
+        holder.city.text = currentItem.address?.city
+        holder.postCode.text = currentItem.address?.postCode.toString()
+        holder.contactPhoto.setImageBitmap(currentItem.contactPhoto)
 
-        if(currentItem.lastName.endsWith("ova")){
+        val isVisible : Boolean = currentItem.visibility
+        holder.expandableLayout.visibility = if (isVisible) View.VISIBLE else View.GONE
+
+        holder.contactPreview.setOnClickListener {
+            currentItem.visibility = !currentItem.visibility
+            notifyItemChanged(position)
+        }
+
+        if (currentItem.lastName.endsWith("ova")) {
             holder.contactPreview.setBackgroundColor(Color.parseColor("#E49B83"))
-        } else{
+        } else {
             holder.contactPreview.setBackgroundColor(Color.parseColor("#8DBC57"))
             holder.editContact.setBackgroundColor(Color.parseColor("#8DBC57"))
             holder.favoriteContact.setBackgroundColor(Color.parseColor("#8DBC57"))
