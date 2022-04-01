@@ -1,4 +1,4 @@
-package com.example.contacts
+package com.example.contacts.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,9 +6,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.contacts.R
 import com.example.contacts.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class ContactActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 

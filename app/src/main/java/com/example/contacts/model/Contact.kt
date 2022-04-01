@@ -8,7 +8,7 @@ import kotlinx.parcelize.RawValue
 
 @Parcelize
 data class Address(
-    val street: String?,
+    val street: String,
     val city: String?,
     @ColumnInfo(name = "post_code")
     val postCode: Int?
