@@ -1,4 +1,4 @@
-package com.example.contacts.fragments.list
+package com.example.contacts.presentation.ui.list
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -15,7 +15,9 @@ import com.example.contacts.data.ContactDatabase
 import com.example.contacts.repository.ContactRepository
 import com.example.contacts.viewmodel.ContactViewModel
 import com.example.contacts.viewmodel.ContactViewModelProviderFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AllContactsFragment : Fragment() {
     private var _binding: FragmentAllContactsBinding? = null
     private val binding get() = _binding!!

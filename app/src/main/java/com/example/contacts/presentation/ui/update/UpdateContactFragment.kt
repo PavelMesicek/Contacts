@@ -1,4 +1,4 @@
-package com.example.contacts.fragments.update
+package com.example.contacts.presentation.ui.update
 
 import android.os.Bundle
 import android.text.Editable
@@ -20,7 +20,9 @@ import com.example.contacts.model.Contact
 import com.example.contacts.repository.ContactRepository
 import com.example.contacts.viewmodel.ContactViewModel
 import com.example.contacts.viewmodel.ContactViewModelProviderFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UpdateContactFragment : Fragment() {
 
     private var _binding: FragmentUpdateContactBinding? = null

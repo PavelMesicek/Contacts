@@ -7,12 +7,9 @@
 
     <fragment
         android:id="@+id/allContactsFragment"
-        android:name="com.example.contacts.fragments.list.AllContactsFragment"
+        android:name="com.example.contacts.presentation.ui.list.AllContactsFragment"
         android:label="Contacts"
         tools:layout="@layout/fragment_all_contacts" >
-        <action
-            android:id="@+id/action_allContactsFragment_to_contactFragment"
-            app:destination="@id/contactFragment" />
         <action
             android:id="@+id/action_allContactsFragment_to_newContactFragment"
             app:destination="@id/newContactFragment" />
@@ -22,21 +19,16 @@
     </fragment>
     <fragment
         android:id="@+id/favoritesContactsFragment"
-        android:name="com.example.contacts.fragments.list.FavoritesContactsFragment"
+        android:name="com.example.contacts.presentation.ui.list.FavoritesContactsFragment"
         android:label="Favorit Contacts"
         tools:layout="@layout/fragment_favorites_contacts" >
         <action
-            android:id="@+id/action_favoritesContactsFragment_to_contactFragment"
-            app:destination="@id/contactFragment" />
+            android:id="@+id/action_favoritesContactsFragment_to_updateContactFragment"
+            app:destination="@id/updateContactFragment" />
     </fragment>
     <fragment
-        android:id="@+id/contactFragment"
-        android:name="com.example.contacts.fragments.detail.ContactFragment"
-        android:label="Detail"
-        tools:layout="@layout/fragment_contact" />
-    <fragment
         android:id="@+id/newContactFragment"
-        android:name="com.example.contacts.fragments.update.NewContactFragment"
+        android:name="com.example.contacts.presentation.ui.update.NewContactFragment"
         android:label="Add New Contact"
         tools:layout="@layout/fragment_new_contact" >
         <action
@@ -44,13 +36,8 @@
             app:destination="@id/allContactsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.contacts.fragments.detail.SettingsFragment"
-        android:label="Setting"
-        tools:layout="@layout/fragment_settings" />
-    <fragment
         android:id="@+id/updateContactFragment"
-        android:name="com.example.contacts.fragments.update.UpdateContactFragment"
+        android:name="com.example.contacts.presentation.ui.update.UpdateContactFragment"
         android:label="Update contact"
         tools:layout="@layout/fragment_update_contact" >
         <action
@@ -59,5 +46,8 @@
         <argument
             android:name="currentContact"
             app:argType="com.example.contacts.model.Contact" />
+        <action
+            android:id="@+id/action_updateContactFragment_to_favoritesContactsFragment"
+            app:destination="@id/favoritesContactsFragment" />
     </fragment>
 </navigation>

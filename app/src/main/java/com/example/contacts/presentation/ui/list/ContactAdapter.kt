@@ -1,4 +1,4 @@
-package com.example.contacts.fragments.list
+package com.example.contacts.presentation.ui.list
 
 import android.app.AlertDialog
 import android.graphics.Color
@@ -55,22 +55,28 @@ class ContactAdapter(
         holder.postCode.text = currentItem.address?.postCode.toString()
         holder.contactPhoto.setImageBitmap(currentItem.contactPhoto)
 
+        fun changeBackground(){
+            if (currentItem.lastName.endsWith("ova")) {
+                holder.contactPreview.setBackgroundColor(Color.parseColor("#E49B83"))
+            } else {
+                holder.contactPreview.setBackgroundColor(Color.parseColor("#8DBC57"))
+                holder.editContact.setBackgroundColor(Color.parseColor("#8DBC57"))
+                holder.favoriteContact.setBackgroundColor(Color.parseColor("#8DBC57"))
+                holder.deleteContact.setBackgroundColor(Color.parseColor("#8DBC57"))
+            }
+        }
+
+        changeBackground()
+
         val isVisible : Boolean = currentItem.visibility
         holder.expandableLayout.visibility = if (isVisible) View.VISIBLE else View.GONE
 
         holder.contactPreview.setOnClickListener {
             currentItem.visibility = !currentItem.visibility
+            changeBackground()
             notifyItemChanged(position)
         }
 
-        if (currentItem.lastName.endsWith("ova")) {
-            holder.contactPreview.setBackgroundColor(Color.parseColor("#E49B83"))
-        } else {
-            holder.contactPreview.setBackgroundColor(Color.parseColor("#8DBC57"))
-            holder.editContact.setBackgroundColor(Color.parseColor("#8DBC57"))
-            holder.favoriteContact.setBackgroundColor(Color.parseColor("#8DBC57"))
-            holder.deleteContact.setBackgroundColor(Color.parseColor("#8DBC57"))
-        }
 
         holder.editContact.setOnClickListener {
             val action =

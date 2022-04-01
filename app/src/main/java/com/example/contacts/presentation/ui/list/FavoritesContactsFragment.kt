@@ -1,4 +1,4 @@
-package com.example.contacts.fragments.list
+package com.example.contacts.presentation.ui.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.contacts.databinding.FragmentFavoritesContactsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavoritesContactsFragment : Fragment() {
 
     private var _binding: FragmentFavoritesContactsBinding? = null

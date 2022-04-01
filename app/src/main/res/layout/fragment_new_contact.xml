@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    tools:context=".fragments.update.NewContactFragment">
+    tools:context=".presentation.ui.update.NewContactFragment">
 
     <EditText
         android:id="@+id/etFirstName"
