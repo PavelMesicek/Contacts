@@ -2,4 +2,4 @@
 
 **My first application in Kotlin.**  
 
-Room, Dao, repository, viewModel + provider factory, Live Data, fragments, courotines.
+Room, Dao, repository, viewModel, Live Data, fragments, courotines, dependency injection.
