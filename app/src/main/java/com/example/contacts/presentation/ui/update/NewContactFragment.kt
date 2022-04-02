@@ -10,16 +10,13 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.contacts.R
-import com.example.contacts.data.ContactDatabase
 import com.example.contacts.databinding.FragmentNewContactBinding
 import com.example.contacts.model.Address
 import com.example.contacts.model.Contact
-import com.example.contacts.repository.ContactRepository
 import com.example.contacts.viewmodel.ContactViewModel
-import com.example.contacts.viewmodel.ContactViewModelProviderFactory
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,18 +24,13 @@ class NewContactFragment : Fragment() {
 
     private var _binding: FragmentNewContactBinding? = null
     private val binding get() = _binding!!
-    private lateinit var contactViewModel: ContactViewModel
+    private val contactViewModel: ContactViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNewContactBinding.inflate(inflater, container, false)
-
-        val contactRepository = ContactRepository(ContactDatabase(requireContext()))
-        val viewModelProviderFactory = ContactViewModelProviderFactory(contactRepository)
-        contactViewModel =
-            ViewModelProvider(this, viewModelProviderFactory)[ContactViewModel::class.java]
 
         val getImage = registerForActivityResult(
             ActivityResultContracts.GetContent()

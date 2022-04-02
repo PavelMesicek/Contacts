@@ -1,14 +1,22 @@
 package com.example.contacts.viewmodel
 
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.contacts.model.Contact
 import com.example.contacts.repository.ContactRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ContactViewModel(private val contactRepository: ContactRepository) : ViewModel() {
+@HiltViewModel
+class ContactViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
+    private val contactRepository: ContactRepository
+) : ViewModel(), LifecycleObserver {
 
     fun insertContacts(contact: Contact) = CoroutineScope(Dispatchers.IO).launch {
         contactRepository.insertContacts(contact)
@@ -26,5 +34,4 @@ class ContactViewModel(private val contactRepository: ContactRepository) : ViewM
 
     fun getContactById(id: Int): Contact? = contactRepository.getContactById(id)
 
-    fun findByFirstName(first: String): Contact = contactRepository.findByFirstName(first)
 }

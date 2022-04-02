@@ -6,22 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.contacts.R
 import com.example.contacts.databinding.FragmentAllContactsBinding
-import com.example.contacts.data.ContactDatabase
-import com.example.contacts.repository.ContactRepository
 import com.example.contacts.viewmodel.ContactViewModel
-import com.example.contacts.viewmodel.ContactViewModelProviderFactory
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AllContactsFragment : Fragment() {
     private var _binding: FragmentAllContactsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var contactViewModel: ContactViewModel
+    private val contactViewModel: ContactViewModel by viewModels()
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
@@ -30,10 +27,6 @@ class AllContactsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAllContactsBinding.inflate(inflater, container, false)
-        val contactRepository = ContactRepository(ContactDatabase(requireContext()))
-        val viewModelProviderFactory = ContactViewModelProviderFactory(contactRepository)
-        contactViewModel =
-            ViewModelProvider(this, viewModelProviderFactory)[ContactViewModel::class.java]
 
         val adapter = ContactAdapter(listOf(), contactViewModel)
         binding.rvContact.layoutManager = LinearLayoutManager(requireContext())

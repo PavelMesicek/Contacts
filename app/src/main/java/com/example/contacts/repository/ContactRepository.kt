@@ -1,20 +1,21 @@
 package com.example.contacts.repository
 
 import androidx.lifecycle.LiveData
+import com.example.contacts.data.ContactDao
 import com.example.contacts.model.Contact
-import com.example.contacts.data.ContactDatabase
+import javax.inject.Inject
 
-class ContactRepository(private val db: ContactDatabase) {
+class ContactRepository @Inject constructor(
+    private val contactDao: ContactDao
+) {
 
-    suspend fun insertContacts(contact: Contact) = db.contactDao().insertContacts(contact)
+    suspend fun insertContacts(contact: Contact) = contactDao.insertContacts(contact)
 
-    suspend fun updateContacts(contact: Contact) = db.contactDao().updateContacts(contact)
+    suspend fun updateContacts(contact: Contact) = contactDao.updateContacts(contact)
 
-    suspend fun deleteContacts(contact: Contact) = db.contactDao().deleteContacts(contact)
+    suspend fun deleteContacts(contact: Contact) = contactDao.deleteContacts(contact)
 
-    fun getAllContacts(): LiveData<List<Contact>> = db.contactDao().getAllContacts()
+    fun getAllContacts(): LiveData<List<Contact>> = contactDao.getAllContacts()
 
-    fun getContactById(id: Int): Contact? = db.contactDao().getContactById(id)
-
-    fun findByFirstName(first: String): Contact = db.contactDao().findByFirstName(first)
+    fun getContactById(id: Int): Contact? = contactDao.getContactById(id)
 }

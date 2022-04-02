@@ -1,7 +1,8 @@
 package com.example.contacts.di
 
 import android.content.Context
-import com.example.contacts.presentation.BaseApplication
+import androidx.room.Room
+import com.example.contacts.data.ContactDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,8 +16,16 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideApplication(@ApplicationContext app: Context): BaseApplication {
-        return app as BaseApplication
-    }
+    fun provideContactDatabase(
+        @ApplicationContext app: Context
+    ) = Room.databaseBuilder(
+        app,
+        ContactDatabase::class.java,
+        "contact_db"
+    ).fallbackToDestructiveMigration().build()
+
+    @Singleton
+    @Provides
+    fun provideContactDao(db: ContactDatabase) = db.contactDao()
 
 }
