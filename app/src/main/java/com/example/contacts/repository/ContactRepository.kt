@@ -8,7 +8,6 @@ import javax.inject.Inject
 class ContactRepository @Inject constructor(
     private val contactDao: ContactDao
 ) {
-
     suspend fun insertContacts(contact: Contact) = contactDao.insertContacts(contact)
 
     suspend fun updateContacts(contact: Contact) = contactDao.updateContacts(contact)
@@ -16,6 +15,4 @@ class ContactRepository @Inject constructor(
     suspend fun deleteContacts(contact: Contact) = contactDao.deleteContacts(contact)
 
     fun getAllContacts(): LiveData<List<Contact>> = contactDao.getAllContacts()
-
-    fun getContactById(id: Int): Contact? = contactDao.getContactById(id)
 }

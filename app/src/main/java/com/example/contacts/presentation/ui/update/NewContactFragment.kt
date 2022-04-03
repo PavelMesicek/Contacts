@@ -42,6 +42,7 @@ class NewContactFragment : Fragment() {
 
         binding.ivContactPicture.setOnClickListener {
             getImage.launch("image/*")
+
         }
 
         binding.btnAddContact.setOnClickListener {
@@ -61,9 +62,17 @@ class NewContactFragment : Fragment() {
         val contactPhoto = binding.ivContactPicture.drawable.toBitmap()
 
         if (inputCheck(firstName, lastName, phone)) {
-            val address = Address(street, city, Integer.parseInt(postCode.toString()))
+            val address = Address(street, city, Integer.parseInt("0$postCode"))
             val contact =
-                Contact(0, firstName, lastName, address, Integer.parseInt(phone.toString()), false, contactPhoto)
+                Contact(
+                    0,
+                    firstName,
+                    lastName,
+                    address,
+                    Integer.parseInt(phone.toString()),
+                    false,
+                    contactPhoto
+                )
             contactViewModel.insertContacts(contact)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
             val action =

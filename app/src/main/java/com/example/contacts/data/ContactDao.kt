@@ -15,12 +15,7 @@ interface ContactDao {
     @Delete
     suspend fun deleteContacts(contact: Contact)
 
-    @Query("SELECT * FROM contact_table")
+    @Query("SELECT * FROM contact_table ORDER BY first_name")
     fun getAllContacts(): LiveData<List<Contact>>
 
-    @Query("SELECT * FROM contact_table WHERE id = :id")
-    fun getContactById(id: Int): Contact?
-
-    @Query("SELECT * FROM contact_table WHERE first_name = :first")
-    fun findByFirstName(first: String): Contact
 }

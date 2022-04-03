@@ -36,9 +36,9 @@ class UpdateContactFragment : Fragment() {
         binding.etFirstName.setText(args.currentContact.firstName)
         binding.etLastName.setText(args.currentContact.lastName)
         binding.etPhone.setText(args.currentContact.phone.toString())
-        binding.etStreet.setText(args.currentContact.address?.street)
-        binding.etCity.setText(args.currentContact.address?.street)
-        binding.etPostCode.setText(args.currentContact.address?.postCode.toString())
+        binding.etStreet.setText(args.currentContact.address.street)
+        binding.etCity.setText(args.currentContact.address.street)
+        binding.etPostCode.setText(args.currentContact.address.postCode.toString())
         binding.ivContactPicture.setImageBitmap(args.currentContact.contactPhoto)
 
         binding.btnUpdateContact.setOnClickListener {
@@ -68,7 +68,7 @@ class UpdateContactFragment : Fragment() {
         val contactPhoto = binding.ivContactPicture.drawable.toBitmap()
 
         if (inputCheck(firstName, lastName, phone)) {
-            val address = Address(street, city, Integer.parseInt(postCode.toString()))
+            val address = Address(street, city, Integer.parseInt("0$postCode"))
             val contact = Contact(
                 args.currentContact.id,
                 firstName,

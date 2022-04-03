@@ -2,7 +2,6 @@ package com.example.contacts.viewmodel
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.contacts.model.Contact
 import com.example.contacts.repository.ContactRepository
@@ -14,7 +13,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ContactViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
     private val contactRepository: ContactRepository
 ) : ViewModel(), LifecycleObserver {
 
@@ -31,7 +29,4 @@ class ContactViewModel @Inject constructor(
     }
 
     fun getAllContacts(): LiveData<List<Contact>> = contactRepository.getAllContacts()
-
-    fun getContactById(id: Int): Contact? = contactRepository.getContactById(id)
-
 }

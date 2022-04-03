@@ -50,9 +50,9 @@ class ContactAdapter(
         holder.firstName.text = currentItem.firstName
         holder.lastName.text = currentItem.lastName
         holder.phone.text = currentItem.phone.toString()
-        holder.street.text = currentItem.address?.street
-        holder.city.text = currentItem.address?.city
-        holder.postCode.text = currentItem.address?.postCode.toString()
+        holder.street.text = currentItem.address.street
+        holder.city.text = currentItem.address.city
+        holder.postCode.text = currentItem.address.postCode.toString()
         holder.contactPhoto.setImageBitmap(currentItem.contactPhoto)
 
         fun changeBackground(){
