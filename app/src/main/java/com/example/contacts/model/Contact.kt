@@ -8,10 +8,10 @@ import kotlinx.parcelize.RawValue
 
 @Parcelize
 data class Address(
-    val street: String = "",
-    val city: String = "",
+    val street: String? = null,
+    val city: String? = null,
     @ColumnInfo(name = "post_code")
-    val postCode: Int = 0
+    val postCode: String? = null
 ) : Parcelable
 
 @Parcelize
@@ -25,8 +25,8 @@ data class Contact(
     val lastName: String,
     @Embedded
     val address: @RawValue Address,
-    val phone: Int,
+    val phone: String,
     var isFavorit: Boolean = false,
-    val contactPhoto: Bitmap?,
+    val contactPhoto: Bitmap? = null,
     var visibility : Boolean = false
 ) : Parcelable

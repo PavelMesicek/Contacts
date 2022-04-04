@@ -1,12 +1,9 @@
 package com.example.contacts.presentation.ui.update
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
@@ -16,6 +13,8 @@ import androidx.navigation.fragment.navArgs
 import com.example.contacts.databinding.FragmentUpdateContactBinding
 import com.example.contacts.model.Address
 import com.example.contacts.model.Contact
+import com.example.contacts.presentation.ui.InfoDialog.Companion.showToast
+import com.example.contacts.utils.HelperUtils.Companion.areInputValid
 import com.example.contacts.viewmodel.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,15 +31,13 @@ class UpdateContactFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentUpdateContactBinding.inflate(inflater, container, false)
-
         binding.etFirstName.setText(args.currentContact.firstName)
         binding.etLastName.setText(args.currentContact.lastName)
-        binding.etPhone.setText(args.currentContact.phone.toString())
+        binding.etPhone.setText(args.currentContact.phone)
         binding.etStreet.setText(args.currentContact.address.street)
         binding.etCity.setText(args.currentContact.address.street)
-        binding.etPostCode.setText(args.currentContact.address.postCode.toString())
+        binding.etPostCode.setText(args.currentContact.address.postCode)
         binding.ivContactPicture.setImageBitmap(args.currentContact.contactPhoto)
-
         binding.btnUpdateContact.setOnClickListener {
             updateContactToDatabase()
         }
@@ -61,36 +58,29 @@ class UpdateContactFragment : Fragment() {
     private fun updateContactToDatabase() {
         val firstName = binding.etFirstName.text.toString()
         val lastName = binding.etLastName.text.toString()
-        val phone = binding.etPhone.text
+        val phone = binding.etPhone.text.toString()
         val street = binding.etStreet.text.toString()
         val city = binding.etCity.text.toString()
-        val postCode = binding.etPostCode.text
+        val postCode = binding.etPostCode.text.toString()
         val contactPhoto = binding.ivContactPicture.drawable.toBitmap()
 
-        if (inputCheck(firstName, lastName, phone)) {
-            val address = Address(street, city, Integer.parseInt("0$postCode"))
+        if (areInputValid(firstName, lastName, phone)) {
+            val address = Address(street, city, postCode)
             val contact = Contact(
                 args.currentContact.id,
                 firstName,
                 lastName,
                 address,
-                Integer.parseInt(phone.toString()),
+                phone,
                 false,
                 contactPhoto
             )
             contactViewModel.updateContacts(contact)
-            Toast.makeText(requireContext(), "Successfully updated!", Toast.LENGTH_LONG).show()
+            showToast(requireContext(), "Contact has been updated!")
             val action =
                 UpdateContactFragmentDirections.actionUpdateContactFragmentToAllContactsFragment()
             findNavController().navigate(action)
-        } else {
-            Toast.makeText(requireContext(), "Please fill out all fields!", Toast.LENGTH_LONG)
-                .show()
-        }
-    }
-
-    private fun inputCheck(firstName: String, lastName: String, phone: Editable): Boolean {
-        return !(TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && phone.isEmpty())
+        } else showToast(requireContext(), "Please fill out all fields!")
     }
 
     override fun onDestroyView() {

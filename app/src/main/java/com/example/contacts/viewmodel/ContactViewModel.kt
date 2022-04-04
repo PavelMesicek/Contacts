@@ -1,7 +1,6 @@
 package com.example.contacts.viewmodel
 
 import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.contacts.model.Contact
 import com.example.contacts.repository.ContactRepository
@@ -28,7 +27,7 @@ class ContactViewModel @Inject constructor(
         contactRepository.deleteContacts(contact)
     }
 
-    fun getAllContacts(): LiveData<List<Contact>> = contactRepository.getAllContacts()
+    fun getAllContacts() = contactRepository.getAllContacts()
 
-    fun getAllFavorit(): LiveData<List<Contact>> = contactRepository.getAllFavorit()
+    fun getAllFavorit()  = contactRepository.getAllFavorit()
 }
