@@ -6,7 +6,7 @@ import com.example.contacts.model.Converters
 
 @Database(
     entities = [Contact::class],
-    version = 6
+    version = 7
 )
 @TypeConverters(Converters::class)
 abstract class ContactDatabase : RoomDatabase() {

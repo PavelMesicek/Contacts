@@ -29,4 +29,6 @@ class ContactViewModel @Inject constructor(
     }
 
     fun getAllContacts(): LiveData<List<Contact>> = contactRepository.getAllContacts()
+
+    fun getAllFavorit(): LiveData<List<Contact>> = contactRepository.getAllFavorit()
 }

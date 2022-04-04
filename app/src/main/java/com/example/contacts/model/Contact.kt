@@ -26,7 +26,7 @@ data class Contact(
     @Embedded
     val address: @RawValue Address,
     val phone: Int,
-    val isFavorit: Boolean = false,
+    var isFavorit: Boolean = false,
     val contactPhoto: Bitmap?,
     var visibility : Boolean = false
 ) : Parcelable

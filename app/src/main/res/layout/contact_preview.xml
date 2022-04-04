@@ -68,7 +68,7 @@
         app:layout_constraintBottom_toTopOf="@+id/expandableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_favorit" />
+        app:srcCompat="@drawable/ic_add_to_favorit" />
 
     <ImageView
         android:id="@+id/ivContactPicture"

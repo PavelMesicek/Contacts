@@ -18,4 +18,6 @@ interface ContactDao {
     @Query("SELECT * FROM contact_table ORDER BY first_name")
     fun getAllContacts(): LiveData<List<Contact>>
 
+    @Query("SELECT * FROM contact_table WHERE isFavorit == 1")
+    fun getAllFavorit(): LiveData<List<Contact>>
 }

@@ -15,4 +15,6 @@ class ContactRepository @Inject constructor(
     suspend fun deleteContacts(contact: Contact) = contactDao.deleteContacts(contact)
 
     fun getAllContacts(): LiveData<List<Contact>> = contactDao.getAllContacts()
+
+    fun getAllFavorit(): LiveData<List<Contact>> = contactDao.getAllFavorit()
 }
