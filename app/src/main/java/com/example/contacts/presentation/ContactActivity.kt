@@ -21,8 +21,8 @@ class ContactActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.contactNavHostFragment) as NavHostFragment
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.contactNavHostFragment) as NavHostFragment
         navController = navHostFragment.navController
         setupActionBarWithNavController(navController)
         binding.bottomNavigationView.setupWithNavController(navController)

@@ -42,31 +42,59 @@ class ContactAdapter(
 
         changeBackground(contact, holder)
         changeFavoritImageResource(contact, holder)
-
-        holder.binding.expandableLayout.visibility =
-            if (contact.visibility) View.VISIBLE else View.GONE
+        showExpandableLayout(holder, contact)
 
         holder.binding.contactPreview.setOnClickListener {
-            contact.visibility = !contact.visibility
-            changeBackground(contact, holder)
-            notifyItemChanged(position)
+            changeRowPosition(contact, holder, position)
         }
 
         holder.binding.ibFavorit.setOnClickListener {
-            contact.isFavorit = !contact.isFavorit
-            contactViewModel.updateContacts(contact)
-            changeFavoritImageResource(contact, holder)
+            changeFavoritContact(contact, holder)
         }
 
         holder.binding.ibEdit.setOnClickListener {
-            val action = AllContactsFragmentDirections
-                .actionAllContactsFragmentToUpdateContactFragment(contact)
-            holder.itemView.findNavController().navigate(action)
+            editContact(contact, holder)
         }
 
         holder.binding.ibDelete.setOnClickListener {
-            deleteUser(contact, holder)
+            deleteContact(contact, holder)
         }
+    }
+
+    private fun changeRowPosition(
+        contact: Contact,
+        holder: ContactViewHolder,
+        position: Int
+    ) {
+        contact.visibility = !contact.visibility
+        changeBackground(contact, holder)
+        notifyItemChanged(position)
+    }
+
+    private fun showExpandableLayout(
+        holder: ContactViewHolder,
+        contact: Contact
+    ) {
+        holder.binding.expandableLayout.visibility =
+            if (contact.visibility) View.VISIBLE else View.GONE
+    }
+
+    private fun changeFavoritContact(
+        contact: Contact,
+        holder: ContactViewHolder
+    ) {
+        contact.isFavorit = !contact.isFavorit
+        contactViewModel.updateContacts(contact)
+        changeFavoritImageResource(contact, holder)
+    }
+
+    private fun editContact(
+        contact: Contact,
+        holder: ContactViewHolder
+    ) {
+        val action = AllContactsFragmentDirections
+            .actionAllContactsFragmentToUpdateContactFragment(contact)
+        holder.itemView.findNavController().navigate(action)
     }
 
     private fun setBindingFields(holder: ContactViewHolder, contact: Contact) {
@@ -106,7 +134,7 @@ class ContactAdapter(
         else holder.binding.ibFavorit.setImageResource(R.drawable.ic_add_to_favorit)
     }
 
-    private fun deleteUser(contact: Contact, holder: ContactViewHolder) {
+    private fun deleteContact(contact: Contact, holder: ContactViewHolder) {
         val builder = AlertDialog.Builder(holder.binding.ibDelete.context)
         builder.setPositiveButton("Yes") { _, _ ->
             contactViewModel.deleteContacts(contact)

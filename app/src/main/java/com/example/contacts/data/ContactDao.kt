@@ -20,4 +20,7 @@ interface ContactDao {
 
     @Query("SELECT * FROM contact_table WHERE isFavorit == 1")
     fun getAllFavorit(): LiveData<List<Contact>>
+
+    @Query("SELECT * FROM contact_table WHERE first_name LIKE :searchQuery OR last_name LIKE :searchQuery")
+    fun searchContact(searchQuery: String): LiveData<List<Contact>>
 }

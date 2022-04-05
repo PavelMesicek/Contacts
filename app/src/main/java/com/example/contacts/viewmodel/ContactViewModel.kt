@@ -1,6 +1,7 @@
 package com.example.contacts.viewmodel
 
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.contacts.model.Contact
 import com.example.contacts.repository.ContactRepository
@@ -30,4 +31,6 @@ class ContactViewModel @Inject constructor(
     fun getAllContacts() = contactRepository.getAllContacts()
 
     fun getAllFavorit()  = contactRepository.getAllFavorit()
+
+    fun searchContact(searchQuery: String): LiveData<List<Contact>> = contactRepository.searchContact(searchQuery)
 }

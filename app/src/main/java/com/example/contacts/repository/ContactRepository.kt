@@ -17,4 +17,6 @@ class ContactRepository @Inject constructor(
     fun getAllContacts(): LiveData<List<Contact>> = contactDao.getAllContacts()
 
     fun getAllFavorit(): LiveData<List<Contact>> = contactDao.getAllFavorit()
+
+    fun searchContact(searchQuery: String): LiveData<List<Contact>> = contactDao.searchContact(searchQuery)
 }

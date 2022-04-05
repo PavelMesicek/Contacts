@@ -31,13 +31,13 @@ class NewContactFragment : Fragment() {
     ): View {
         _binding = FragmentNewContactBinding.inflate(inflater, container, false)
 
+        binding.ivContactPicture.setImageResource(R.drawable.contact_default_image)
+
         val getImage = registerForActivityResult(
             ActivityResultContracts.GetContent()
         ) {
             binding.ivContactPicture.setImageURI(it)
         }
-
-        binding.ivContactPicture.setImageResource(R.drawable.contact_default_image)
 
         binding.ivContactPicture.setOnClickListener {
             getImage.launch("image/*")
